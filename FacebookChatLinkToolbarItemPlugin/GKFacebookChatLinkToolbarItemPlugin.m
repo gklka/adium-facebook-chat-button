@@ -23,12 +23,21 @@
 #import <Adium/AIToolbarControllerProtocol.h>
 #import <Adium/AIListContact.h>
 #import <Adium/AIMetaContact.h>
+#import <Adium/AIChat.h>
+
+#import <AdiumLibpurple/AIFacebookXMPPAccount.h>
+#import <AdiumLibpurple/ESPurpleJabberAccount.h>
+
 // #import "AIFacebookXMPPAccount.h"
 
 #define FACEBOOK_LINK_IDENTIFER	@"FacebookChatLink"
 
 @interface GKFacebookChatLinkToolbarItemPlugin ()
 - (IBAction)openInSafari:(id)sender;
+- (AIChat *)chatForToolbar:(NSToolbarItem *)senderItem;
+- (BOOL)verifyContact:(AIListContact *)listContact;
+- (BOOL)contactIsFacebookChat:(AIListObject *)object;
+- (BOOL)validateToolbarItem:(NSToolbarItem *)senderItem;
 @end
 
 /*!
@@ -78,7 +87,7 @@
 														toolTip:[NSString stringWithFormat:AILocalizedString(@"View the current chat on Facebook in Safari",nil)]
 														 target:self
 												settingSelector:@selector(setImage:)
-													itemContent:[NSImage imageNamed:@"Safari" forClass:[self class] loadLazily:YES]
+													itemContent:[NSImage imageNamed:@"facebook" forClass:[self class] loadLazily:YES]
 														 action:@selector(openInSafari:)
 														   menu:nil];
 	[[adium toolbarController] registerToolbarItem:toolbarItem forToolbarType:@"TextEntry"];
@@ -107,7 +116,7 @@
     facebookUID = [facebookUID stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
     // open it in the default browser
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://facebook.com/messages/%@/", facebookUID]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://facebook.com/messages/%@/", facebookUID]]]; // facebook will redirect if user is using https
 }
 
 #pragma mark - Helper functions
@@ -135,18 +144,29 @@
 	
     NSLog(@"GKFacebookChatLinkToolbarItemPlugin: %@", [object class]);
     
-    return YES;
-//	if ([object isKindOfClass:[AIMetaContact class]]) {
-//		for (AIListContact *contact in [(AIMetaContact *)object uniqueContainedObjects]) {
-//			if ([contact.account isKindOfClass:[AIFacebookXMPPAccount class]]) {
-//				return YES;
-//			}
-//		}
-//		
-//		return NO;
-//	} else {
-//		return [((AIListContact *)object).account isKindOfClass:[AIFacebookXMPPAccount class]];
-//	}
+	if ([object isKindOfClass:[AIMetaContact class]]) {
+		for (AIListContact *contact in [(AIMetaContact *)object uniqueContainedObjects]) {
+            return [self verifyContact:contact];
+		}
+        return NO;
+	} else {
+        return [self verifyContact:((AIListContact *)object)];
+	}
+}
+
+- (BOOL)verifyContact:(AIListContact *)listContact
+{
+    // user is either using Facebook directly
+    if ([listContact.account isKindOfClass:[AIFacebookXMPPAccount class]]) {
+        return YES;
+    }
+    
+    // or is Czo, who configured it through XMPP
+    if ([listContact.account isKindOfClass:[ESPurpleJabberAccount class]]) {
+        return [listContact.UID rangeOfString:@"chat.facebook.com"].location != NSNotFound;
+    }
+    
+    return NO;
 }
 
 - (AIChat *)chatForToolbar:(NSToolbarItem *)senderItem
