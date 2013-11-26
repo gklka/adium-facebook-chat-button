@@ -1,15 +1,15 @@
 Adium Facebook Chat Toolbar Item Plugin
 ==========================
 
-Adium plugin for displaying a button to open Facebook chats in Safari
+**Adium plugin for displaying a button to open Facebook chats in Safari**
 
-<i>Do you chat with Facebook chat?
+_Do you chat with Facebook chat?_
 
-Do you use Adium for that?
+_Do you use Adium for that?_
 
-Have you ever needed to open Facebook in browser for viewing an image or the chat history?
+_Have you ever needed to open Facebook in browser for viewing an image or the chat history?_
 
-Did you ever complain, why is that chat so many clicks away?</i>
+_Did you ever complain, why is that chat so many clicks away?_
 
 If the ansers are yes, this plugin is for you. It adds a new button to the Adium chat window toolbar, which leads you directly there. Yes, it is 1 click away now. :)
 
