@@ -11,7 +11,7 @@ _Have you ever needed to open Facebook in browser for viewing an image or the ch
 
 _Did you ever complain, why is that chat so many clicks away?_
 
-If the ansers are yes, this plugin is for you. It adds a new button to the Adium chat window toolbar, which leads you directly there. Yes, it is 1 click away now. :)
+If the answers are yes, this plugin is for you. It adds a new button to the Adium chat window toolbar, which leads you directly there. Yes, it is 1 click away now. :)
 
 ![image](http://gk.lka.hu/public/facebook-chat-link.png)
 
