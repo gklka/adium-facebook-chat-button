@@ -21,7 +21,7 @@ If the answers are yes, this plugin is for you. It adds a new button to the Adiu
 
 # Download
 
-[Adium Facebook Chat Toolbar Item Plugin 1.0](https://github.com/gklka/adium-facebook-chat-button/raw/master/facebook-chat-link-1.0.zip) (zip)
+[Adium Facebook Chat Toolbar Item Plugin 1.0.1](https://github.com/gklka/adium-facebook-chat-button/raw/master/facebook-chat-link-1.0.1.zip) (zip)
 
 # Install
 

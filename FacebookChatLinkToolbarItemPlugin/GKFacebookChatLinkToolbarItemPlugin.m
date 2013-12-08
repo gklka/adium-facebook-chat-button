@@ -64,7 +64,7 @@
  @brief Returns plugin version
  */
 - (NSString *)pluginVersion {
-	return @"1.0";
+	return @"1.0.1";
 }
 
 /*!
