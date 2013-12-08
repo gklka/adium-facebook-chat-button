@@ -142,7 +142,7 @@
 		return NO;
 	}
 	
-    NSLog(@"GKFacebookChatLinkToolbarItemPlugin: %@", [object class]);
+//    NSLog(@"GKFacebookChatLinkToolbarItemPlugin: %@", [object class]);
     
 	if ([object isKindOfClass:[AIMetaContact class]]) {
 		for (AIListContact *contact in [(AIMetaContact *)object uniqueContainedObjects]) {
