@@ -17,7 +17,7 @@ If the answers are yes, this plugin is for you. It adds a new button to the Adiu
 
 # Requirements
 
-[Adium](http://adium.im) version 1.4+
+[Adium](http://adium.im) version 1.4. Unfortunately the current version does not work with Adium 1.5.x.
 
 # Download
 
